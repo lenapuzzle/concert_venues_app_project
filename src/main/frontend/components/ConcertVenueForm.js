@@ -1,18 +1,112 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import _ from 'lodash'
 
+import StateDropdown from "./StateDropdown";
+import ErrorList from "./ErrorList"
 
 const ConcertVenueForm = (props) => {
 
-return(
-<form>
+  const[formPayload, setFormPayload] = useState({
+name:"",
+address:"",
+city:"",
+state:"",
+zipCode:"",
+capacity:"",
+description:"",
+imgUrl:"",
+phoneNumber:""
+  })
 
+const [errors, setErrors]= useState({})
+const [shouldRedirect, setShouldRedirect] = useState(false)
+const [venueId, setVenueId]= useState(null)
+
+const addVenue = async() => {
+  try {
+    const response = await fetch(`/api/v1/venues`, {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify(formPayload)
+
+    })
+
+    if (!response.ok) {
+      if(response.status === 422) {
+        const body = await response.json()
+        return setErrors(body.errors)
+      } else {
+        const errorMessage = `${response.status} (${response.statusText})`
+        const error = new Error(errorMessage)
+        throw(error)
+      }
+    }
+    const body = await response.json()
+    debugger
+      console.log("body", body)
+      setVenueId(body.venue.id)
+      setShouldRedirect(true) 
+    } catch(err) {
+      console.error(`Error in fetch: ${err.message}`)
+    }
+  }
+
+
+const validForSubmission = () => {
+  const errors = {}
+  for(const field in formPayload) {
+    if(formPayload[field].trim() === "") {
+      errors[field] = "is blank"
+    }
+  }
+  setErrors(errors)
+  return _.isEmpty(errors)
+}
+
+const clearForm = () => {
+  setFormPayload({
+    name:"",
+    address:"",
+    city:"",
+    state:"",
+    zipCode:"",
+    capacity:"",
+    description:"",
+    imgUrl:"",
+    phoneNumber:""
+  })
+  setErrors({})
+}
+
+
+const handleSubmit = (event) => {
+  event.preventDefault()
+  if(validForSubmission()) {
+    addVenue(formPayload)
+    clearForm()
+  }
+}
+
+const handleInputChange = event => {
+  setFormPayload({
+    ...formPayload,
+    [event.currentTarget.name]: event.currentTarget.value
+  })
+}
+
+return(
+<form  onSubmit={handleSubmit}>
+<ErrorList errors={{...errors, ...props.errors}} />
 <div>
 <label htmlFor="name">Name:</label>
 <input
 name= "name"
 id="name"
 type="text"
+value={formPayload.name}
+onChange={handleInputChange}
 />
 </div>
 
@@ -22,6 +116,8 @@ type="text"
 name= "address"
 id="address"
 type="text"
+value={formPayload.address}
+onChange={handleInputChange}
 />
 </div>
 
@@ -31,16 +127,18 @@ type="text"
 name= "city"
 id="city"
 type="text"
+value={formPayload.city}
+onChange={handleInputChange}
 />
 </div>
 
 <div>
-<label htmlFor="state">State:</label>
-<input
-name="state"
-id="state"
-type="text"
-/>
+<StateDropdown
+      handleInputChange={handleInputChange}
+            state={formPayload.state}
+      />
+
+
 </div>
 
 <div>
@@ -49,6 +147,8 @@ type="text"
 name= "zipCode"
 id="zipCode"
 type="text"
+value={formPayload.zipCode}
+onChange={handleInputChange}
 />
 </div>
 
@@ -58,6 +158,8 @@ type="text"
 name= "phoneNumber"
 id="phoneNumber"
 type="text"
+value={formPayload.phoneNumber}
+onChange={handleInputChange}
 />
 </div>
 
@@ -67,6 +169,8 @@ type="text"
 name= "description"
 id="description"
 type="text"
+value={formPayload.description}
+onChange={handleInputChange}
 />
 </div>
 
@@ -76,6 +180,8 @@ type="text"
 name= "capacity"
 id="capacity"
 type="number"
+value={formPayload.capacity}
+onChange={handleInputChange}
 />
 </div>
 
@@ -85,11 +191,13 @@ type="number"
 name= "imgUrl"
 id="imgUrl"
 type="text"
+value={formPayload.imgUrl}
+onChange={handleInputChange}
 />
 </div>
 
+<input className="button" type="submit" value="Submit" />
 </form>
-
 
 )
 

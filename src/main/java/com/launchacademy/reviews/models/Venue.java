@@ -39,7 +39,7 @@ public class Venue {
   private String address;
 
   @Column(name = "zip_code")
-  private String zip;
+  private String zipCode;
 
   @Column(name = "phone_number")
   private String phoneNumber;
