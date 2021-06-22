@@ -24,6 +24,33 @@ const VenueShow = (props) => {
     fetchVenue();
   }, []);
 
-  return <div>Live from the show page</div>;
+  return (
+    <div>
+      <div>
+        <h2>{venue.name}</h2>
+      </div>
+      <div>
+        <img src={venue.imgUrl} />
+      </div>
+      <div>
+        <p>{venue.description}</p>
+      </div>
+      <h3>Address:</h3>
+      <div>
+        <span>{venue.address}, </span>
+        <span>{venue.city}, </span>
+        <span>{venue.state} </span>
+        <span>{venue.zipCode}</span>
+      </div>
+      <h3>Phone Number:</h3>
+      <div>
+        <span>{venue.phoneNumber}</span>
+      </div>
+      <h4>Capacity:</h4>
+      <div>
+        <span>{venue.capacity}</span>
+      </div>
+    </div>
+  );
 };
 export default VenueShow;

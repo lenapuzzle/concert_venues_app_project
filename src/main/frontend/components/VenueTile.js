@@ -1,18 +1,7 @@
 import React from "react";
 
 const VenueTile = (props) => {
-  const {
-    id,
-    name,
-    city,
-    state,
-    address,
-    zip,
-    phoneNumber,
-    capacity,
-    description,
-    imgUrl,
-  } = props.venue;
+  const { id, name, description, imgUrl } = props.venue;
 
   return (
     <div>
