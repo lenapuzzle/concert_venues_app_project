@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 public class MainSeeder  implements CommandLineRunner {
     private VenueService venueService;
 
-
     @Autowired
     public MainSeeder(VenueService venueService){
         this.venueService = venueService;
@@ -22,7 +21,7 @@ public class MainSeeder  implements CommandLineRunner {
         Venue venue1 = new Venue();
         Venue venue2 = new Venue();
 
-        if (venueService.findAllVenues().size() <= 0){
+        if (venueService.count() <= 0){
             venue1.setName("El Corazon");
             venue1.setCity("Seattle");
             venue1.setState("WA");
@@ -46,8 +45,6 @@ public class MainSeeder  implements CommandLineRunner {
             venue2.setImgUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJsX5K_qncFXLDr6hHjs3H7xoJcYOoIwvUew&usqp=CAU");
 
             venueService.save(venue2);
-
-
         }
     }
 }

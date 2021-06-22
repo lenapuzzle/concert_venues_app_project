@@ -28,7 +28,12 @@ const VenueIndex = (props) => {
     return <VenueTile key={venue.id} venue={venue} />;
   });
 
-  return <div>{venueTiles}</div>;
+  return (
+    <div>
+      <h1>Venues</h1>
+      {venueTiles}
+    </div>
+  );
 };
 
 export default VenueIndex;

@@ -1,9 +1,25 @@
 import React from "react";
 
 const VenueTile = (props) => {
-  // const {} = props.venues;
+  const {
+    name,
+    city,
+    state,
+    address,
+    zip,
+    phoneNumber,
+    capacity,
+    description,
+    imgUrl,
+  } = props.venue;
 
-  return <div>Hello from the venue tile</div>;
+  return (
+    <div>
+      <h2>{name}</h2>
+      <img src={imgUrl} />
+      <p>{description}</p>
+    </div>
+  );
 };
 
 export default VenueTile;
