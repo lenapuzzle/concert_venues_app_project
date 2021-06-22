@@ -31,7 +31,6 @@ public class Venue {
   @Column(name = "city")
   private String city;
 
-
   @Column(name = "state")
   private String state;
 
