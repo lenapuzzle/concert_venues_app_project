@@ -38,7 +38,7 @@ public class Venue {
   @Column(name = "address")
   private String address;
 
-  @Column(name = "zip")
+  @Column(name = "zip_code")
   private String zip;
 
   @Column(name = "phone_number")
