@@ -1,7 +1,9 @@
 package com.launchacademy.reviews.controllers;
 
+import com.launchacademy.reviews.errorHandlers.ErrorDetails;
 import com.launchacademy.reviews.models.Venue;
 import com.launchacademy.reviews.services.VenueService;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,15 +40,9 @@ private VenueService venueService;
   @PostMapping
   public ResponseEntity<Object> createVenue(@Valid @RequestBody Venue venue, BindingResult bindingResult ){
     if (bindingResult.hasErrors()){
-      Map<String,String> errorMap = new HashMap<>();
-      List<FieldError> fieldErrorList = bindingResult.getFieldErrors();
-      for (FieldError fieldError: fieldErrorList ){
-        errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
-        System.out.println(fieldError.getField());
-        System.out.println(fieldError.getDefaultMessage());
-
-      }
-      return new ResponseEntity<Object>(errorMap, HttpStatus.UNPROCESSABLE_ENTITY);
+      Map<String,String> errorMap = ErrorDetails.populateErrors(bindingResult);
+      ErrorDetails errorDetails = new ErrorDetails(new Date(), errorMap, "Validation Failed");
+      return new ResponseEntity<Object>(errorDetails, HttpStatus.UNPROCESSABLE_ENTITY);
     }
     Venue newVenue = venueService.save(venue);
     Map<String,Venue> venueMap= new HashMap<>();
