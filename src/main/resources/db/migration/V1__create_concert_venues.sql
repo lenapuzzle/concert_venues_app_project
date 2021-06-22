@@ -5,7 +5,7 @@ CREATE TABLE concert_venues (
   city VARCHAR(255) NOT NULL,
   state VARCHAR(2) NOT NULL,
   zip_code VARCHAR(10) NOT NULL,
-  phone_number VARCHAR(10) NOT NULL,
+  phone_number VARCHAR(14) NOT NULL,
   capacity INTEGER,
   description TEXT,
   img_url VARCHAR(255)
