@@ -12,6 +12,7 @@ const NavBar = (props) => {
           <Redirect to="/concert-venues" />
         </Route>
         <Route exact path="/concert-venues" component={VenueIndex} />
+        <Route exact path="/concert-venues/new" component={ConcertVenueForm} />
       </Switch>
     </div>
   );

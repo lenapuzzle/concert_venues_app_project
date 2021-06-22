@@ -8,5 +8,5 @@ CREATE TABLE concert_venues (
   phone_number VARCHAR(14) NOT NULL,
   capacity INTEGER,
   description TEXT,
-  img_url VARCHAR(255)
+  img_url VARCHAR(255) NOT NULL
 );
