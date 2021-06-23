@@ -5,8 +5,8 @@ import _ from "lodash";
 import VenueField from "./VenueField";
 import ErrorList from "./ErrorList";
 
-const VenueForm = (props) => {
-
+const ReviewForm = (props) => {
+  const [reviewId, setReviewId] = useState(null);
   const[formPayload, setFormPayload] = useState({
     eventName: "",
     userName: "",
@@ -19,7 +19,7 @@ const VenueForm = (props) => {
 
   const addReview = async() => {
     try {
-      const response = await fetch(`/api/v1/reviews/${venudId}`, {
+      const response = await fetch(`/api/v1/venues/${formPayload.venueId}/reviews`, {
         method: 'POST',
         headers: new Headers({
           'Content-Type': 'application/json'
@@ -37,9 +37,7 @@ const VenueForm = (props) => {
         }
       }
       const body = await response.json()
-      console.log("body", body)
       setReviewId(body.review.id)
-    
     } catch(err) {
       console.error(`Error in fetch: ${err.message}`)
     }

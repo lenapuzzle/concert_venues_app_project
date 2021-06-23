@@ -5,6 +5,7 @@ import ConcertVenueForm from "./ConcertVenueForm";
 import VenueIndex from "./VenueIndex.js";
 import Admin from "./Admin";
 import EditVenue from "./EditVenue";
+import ReviewForm from "./ReviewForm";
 
 const NavBar = (props) => {
   return (

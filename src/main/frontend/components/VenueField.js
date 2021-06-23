@@ -34,13 +34,14 @@ return (
 })
 
 return(
-  <div>
-    <label htmlFor="venueId">Venue:</label>
-    <select name="venueId" id="venueId" onChange={props.handleInputChange} value={props.venueId}>
-      {venueOptions}
-    </select>
-  </div>
-)
+    <div>
+      <label htmlFor="venueId">Venue:</label>
+      <select name="venueId" id="venueId" onChange={props.handleInputChange} value={props.venueId}>
+      <option value=""></option>
+        {venueOptions}
+      </select>
+    </div>
+  )
 }
 
 export default VenueField

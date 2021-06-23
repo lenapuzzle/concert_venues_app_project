@@ -22,12 +22,10 @@ const EditVenue = (props) => {
 
   const [errors, setErrors] = useState({});
   const [shouldRedirect, setShouldRedirect] = useState(false);
-  const [venueId, setVenueId] = useState(null);
+  const id = props.match.params.id;
 
   const fetchVenue = async () => {
     try {
-      const id = props.match.params.id;
-      setVenueId(id);
       const response = await fetch(`/api/v1/venues/${id}`);
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`;
@@ -43,7 +41,7 @@ const EditVenue = (props) => {
 
   const editVenue = async () => {
     try {
-      const response = await fetch(`/api/v1/admin/${venueId}`, {
+      const response = await fetch(`/api/v1/admin/venues/${id}`, {
         method: "PUT",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -61,8 +59,6 @@ const EditVenue = (props) => {
         }
       }
       const body = await response.json();
-      console.log("body", body);
-      setVenueId(body.id);
       setShouldRedirect(true);
     } catch (err) {
       console.error(`Error in fetch: ${err.message}`);
@@ -120,7 +116,7 @@ const EditVenue = (props) => {
   }, [location.pathname])
 
   if (shouldRedirect) {
-    return <Redirect push to={`/concert-venues/${venueId}`} />;
+    return <Redirect push to={`/concert-venues/${id}`} />;
   }
   
   return (
