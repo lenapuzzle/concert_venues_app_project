@@ -28,4 +28,8 @@ public Venue save(Venue venue) {
     public Optional<Venue> findById(Integer id) {
       return venueRepository.findById(id);
     }
+
+  public Venue findByName(String name) {
+    return venueRepository.findByName(name);
+  }
 }
