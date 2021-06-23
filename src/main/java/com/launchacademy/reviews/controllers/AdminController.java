@@ -34,7 +34,7 @@ public class AdminController {
       BindingResult bindingResult, @PathVariable Integer venueId) {
     venue.setId(venueId);
     if (bindingResult.hasErrors()) {
-      Map<String, String> errorMap = new ErrorDetails.populateErrors(bindingResult);
+      Map<String, String> errorMap = ErrorDetails.populateErrors(bindingResult);
       ErrorDetails errorDetails = new ErrorDetails(new Date(), errorMap,
           "validation failed on edit");
       return new ResponseEntity<Object>(errorDetails, HttpStatus.UNPROCESSABLE_ENTITY);

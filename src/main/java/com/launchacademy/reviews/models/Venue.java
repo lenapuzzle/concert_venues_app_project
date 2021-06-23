@@ -68,8 +68,7 @@ public class Venue {
   @Column(name = "img_url")
   private String imgUrl;
 
-  @ColumnDefault("false")
   @Column(name = "is_approved")
-  private boolean isApproved;
+  private boolean isApproved = false;
 
 }
