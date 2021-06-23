@@ -29,7 +29,7 @@ public class AdminController {
     this.venueService = venueService;
   }
 
-  @PutMapping("/{venueId}")
+  @PutMapping("/venues/{venueId}")
   public ResponseEntity<Object> modifyVenue(@Valid @RequestBody Venue venue,
       BindingResult bindingResult, @PathVariable Integer venueId) {
     venue.setId(venueId);
