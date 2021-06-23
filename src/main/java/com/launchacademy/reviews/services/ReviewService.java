@@ -5,6 +5,8 @@ import com.launchacademy.reviews.repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReviewService {
 
@@ -17,5 +19,13 @@ public class ReviewService {
 
   public Review save(Review review) {
     return reviewRepository.save(review);
+  }
+
+    public List<Review> findAll() {
+    return (List<Review>) reviewRepository.findAll();
+    }
+
+  public long count() {
+    return reviewRepository.count();
   }
 }

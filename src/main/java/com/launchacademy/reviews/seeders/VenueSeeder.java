@@ -19,7 +19,7 @@ public class VenueSeeder {
     Venue venue1 = new Venue();
     Venue venue2 = new Venue();
 
-    if (venueService.findAllVenues().size() <= 0){
+    if (venueService.count() <= 0){
       venue1.setName("El Corazon");
       venue1.setCity("Seattle");
       venue1.setState("WA");

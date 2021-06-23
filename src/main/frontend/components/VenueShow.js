@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+
+import VenueShowReviews from "./VenueShowReviews.js";
 
 const VenueShow = (props) => {
-  let location = useLocation();
-  const [venue, setVenue] = useState({});
+  const [venue, setVenue] = useState({ reviews: [] });
   const venueId = props.match.params.id;
 
   const fetchVenue = async () => {
@@ -24,15 +24,11 @@ const VenueShow = (props) => {
 
   useEffect(() => {
     fetchVenue();
-  }, [location.pathname]);
+  }, []);
 
-  // const reviews = venue.reviews.map(review => {
-  //   return (
-  //     <div>
-  //       review.eventName
-  //     </div>
-  //   )
-  // })
+  let reviews = venue.reviews.map((review) => {
+    return <VenueShowReviews key={review.id} review={review} />;
+  });
 
   return (
     <div>
@@ -56,10 +52,11 @@ const VenueShow = (props) => {
       <div>
         <span>{venue.phoneNumber}</span>
       </div>
-      <h4>Capacity:</h4>
       <div>
-        <span>{venue.capacity}</span>
+        <h4>Capacity: {venue.capacity}</h4>
       </div>
+      <h3>Reviews:</h3>
+      <div>{reviews}</div>
     </div>
   );
 };
