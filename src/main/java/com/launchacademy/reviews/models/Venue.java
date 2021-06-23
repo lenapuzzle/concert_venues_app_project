@@ -12,6 +12,7 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.validator.constraints.URL;
 
 @Getter
@@ -66,4 +67,8 @@ public class Venue {
   @Size(max=255)
   @Column(name = "img_url")
   private String imgUrl;
+
+  @Column(name = "is_approved")
+  private boolean isApproved = false;
+
 }

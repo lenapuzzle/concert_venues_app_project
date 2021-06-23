@@ -5,7 +5,6 @@ import _ from "lodash";
 import VenueField from "./VenueField";
 import ErrorList from "./ErrorList";
 
-
 const VenueForm = (props) => {
 
   const[formPayload, setFormPayload] = useState({
@@ -13,53 +12,49 @@ const VenueForm = (props) => {
     userName: "",
     text: "",
     rating: "",
-    venueId: "",
+    venueId: ""
     })
 
-    const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({})
 
-
-    const addReview = async() => {
-      try {
-        const response = await fetch(`/api/v1/reviews`, {
-          method: 'POST',
-          headers: new Headers({
-            'Content-Type': 'application/json'
-          }),
-          body: JSON.stringify(formPayload)
-  
-        })
-  
-        if (!response.ok) {
-          if(response.status === 422) {
-            const body = await response.json()
-            return setErrors(body.errors)
-          } else {
-            const errorMessage = `${response.status} (${response.statusText})`
-            const error = new Error(errorMessage)
-            throw(error)
-          }
-        }
-        const body = await response.json()
-        console.log("body", body)
-        setReviewId(body.review.id)
-     
-      } catch(err) {
-        console.error(`Error in fetch: ${err.message}`)
-      }
-    }
-  
-
-    const validForSubmission = () => {
-      const errors = {}
-      for(const field in formPayload) {
-        if(formPayload[field].trim() === "") {
-          errors[field] = "is blank"
+  const addReview = async() => {
+    try {
+      const response = await fetch(`/api/v1/reviews/${venudId}`, {
+        method: 'POST',
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify(formPayload)
+      })
+      if (!response.ok) {
+        if(response.status === 422) {
+          const body = await response.json()
+          return setErrors(body.errors)
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`
+          const error = new Error(errorMessage)
+          throw(error)
         }
       }
-      setErrors(errors)
-      return _.isEmpty(errors)
+      const body = await response.json()
+      console.log("body", body)
+      setReviewId(body.review.id)
+    
+    } catch(err) {
+      console.error(`Error in fetch: ${err.message}`)
     }
+  }
+  
+  const validForSubmission = () => {
+    const errors = {}
+    for(const field in formPayload) {
+      if(formPayload[field].trim() === "") {
+        errors[field] = "is blank"
+      }
+    }
+    setErrors(errors)
+    return _.isEmpty(errors)
+  }
 
   const clearForm = () => {
     setFormPayload({
@@ -80,15 +75,12 @@ const VenueForm = (props) => {
     }
   }
 
-
   const handleInputChange = event => {
     setFormPayload({
       ...formPayload,
       [event.currentTarget.name]: event.currentTarget.value
     })
   }
-
-
 
   return (
     <form onSubmit={handleSubmit}>

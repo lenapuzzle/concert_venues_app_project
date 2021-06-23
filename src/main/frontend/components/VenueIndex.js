@@ -25,12 +25,17 @@ const VenueIndex = (props) => {
   }, []);
 
   const venueTiles = venues.map((venue) => {
-    return <VenueTile key={venue.id} venue={venue} />;
+    return <VenueTile key={venue.id} venue={venue} isAdmin={props.isAdmin}/>;
   });
+
+  let header;
+  if(!props.isAdmin) {
+    header = <h1>Venues</h1>
+  }
 
   return (
     <div>
-      <h1>Venues</h1>
+      {header}
       {venueTiles}
     </div>
   );
