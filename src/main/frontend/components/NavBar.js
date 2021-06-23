@@ -15,7 +15,6 @@ const NavBar = (props) => {
         </Route>
         <Route exact path="/concert-venues" component={VenueIndex} />
         <Route exact path="/concert-venues/new" component={ConcertVenueForm} />
-       
         <Route exact path="/admin/concert-venues" component={Admin} />
         <Route exact path="/admin/:id" component={EditVenue} />
       </Switch>
