@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom"
 
 const VenueShow = (props) => {
+  let location = useLocation();
   const [venue, setVenue] = useState({});
   const venueId = props.match.params.id;
 
@@ -22,7 +24,16 @@ const VenueShow = (props) => {
 
   useEffect(() => {
     fetchVenue();
-  }, []);
+  }, [location.pathname]);
+
+  
+  const reviews = venue.reviews.map(review => {
+    return (
+      <div>
+        review.eventName
+      </div>
+    )
+  })
 
   return (
     <div>
@@ -50,6 +61,7 @@ const VenueShow = (props) => {
       <div>
         <span>{venue.capacity}</span>
       </div>
+        {reviews}
     </div>
   );
 };

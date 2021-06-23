@@ -1,10 +1,14 @@
 package com.launchacademy.reviews.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -48,10 +52,7 @@ public class Venue {
   private String address;
 
   @Column(name = "zip_code")
-<<<<<<< HEAD
-=======
   @Size(min=5, max=10, message="must be 5 digit zip code or XXXXX-XXXX full postal zip code format")
->>>>>>> 151da6d73cad9ca399a3be3ddb1003c7c4e65a87
   private String zipCode;
 
   @NotBlank
@@ -75,4 +76,7 @@ public class Venue {
   @Column(name = "is_approved")
   private boolean isApproved;
 
+  @OneToMany(mappedBy = "venue")
+  @JsonIgnoreProperties("venue")
+  private List<Review> reviews = new ArrayList<>();
 }
