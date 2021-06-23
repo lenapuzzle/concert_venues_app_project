@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom";
 
 const VenueShow = (props) => {
   let location = useLocation();
@@ -26,14 +26,13 @@ const VenueShow = (props) => {
     fetchVenue();
   }, [location.pathname]);
 
-  
-  const reviews = venue.reviews.map(review => {
-    return (
-      <div>
-        review.eventName
-      </div>
-    )
-  })
+  // const reviews = venue.reviews.map(review => {
+  //   return (
+  //     <div>
+  //       review.eventName
+  //     </div>
+  //   )
+  // })
 
   return (
     <div>
@@ -61,7 +60,6 @@ const VenueShow = (props) => {
       <div>
         <span>{venue.capacity}</span>
       </div>
-        {reviews}
     </div>
   );
 };

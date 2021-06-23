@@ -39,11 +39,7 @@ private VenueService venueService;
 
   @GetMapping("/{id}")
   public ResponseEntity<Map<String,Venue>> getVenueById(@PathVariable Integer id){
-<<<<<<< HEAD
-    Map<String, Venue> requestedVenue= new HashMap<>();
-=======
     Map<String, Venue> requestedVenue = new HashMap<>();
->>>>>>> 151da6d73cad9ca399a3be3ddb1003c7c4e65a87
     Optional<Venue> queriedVenue = venueService.findById(id);
     if(queriedVenue.isPresent()){
       requestedVenue.put("venue", queriedVenue.get());
@@ -52,8 +48,6 @@ private VenueService venueService;
       return new ResponseEntity<Map<String,Venue>>(requestedVenue, HttpStatus.NOT_FOUND);
     }
   }
-<<<<<<< HEAD
-=======
 
   @PostMapping
   public ResponseEntity<Object> createVenue(@Valid @RequestBody Venue venue, BindingResult bindingResult ) {
@@ -68,5 +62,4 @@ private VenueService venueService;
     return new ResponseEntity<Object>(venueMap, HttpStatus.CREATED);
   }
 
->>>>>>> 151da6d73cad9ca399a3be3ddb1003c7c4e65a87
 }

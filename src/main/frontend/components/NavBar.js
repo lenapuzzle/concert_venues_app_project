@@ -3,6 +3,9 @@ import { Switch, Route, Link, Redirect } from "react-router-dom";
 
 import ConcertVenueForm from "./ConcertVenueForm";
 import VenueIndex from "./VenueIndex.js";
+import VenueShow from "./VenueShow.js";
+
+// import EditVenue from "./EditVenue.js"
 
 const NavBar = (props) => {
   return (
@@ -13,8 +16,7 @@ const NavBar = (props) => {
         </Route>
         <Route exact path="/concert-venues" component={VenueIndex} />
         <Route exact path="/concert-venues/new" component={ConcertVenueForm} />
-
-        <Route exact path="/admin/concert-venues" component={EditVenue} />
+        <Route exact path="/concert-venues/:id" component={VenueShow} />
       </Switch>
     </div>
   );

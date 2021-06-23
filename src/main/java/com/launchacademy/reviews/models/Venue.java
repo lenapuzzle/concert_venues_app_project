@@ -72,10 +72,6 @@ public class Venue {
   @Column(name = "img_url")
   private String imgUrl;
 
-  @ColumnDefault("false")
-  @Column(name = "is_approved")
-  private boolean isApproved;
-
   @OneToMany(mappedBy = "venue")
   @JsonIgnoreProperties("venue")
   private List<Review> reviews = new ArrayList<>();
