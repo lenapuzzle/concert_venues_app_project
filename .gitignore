@@ -6,6 +6,8 @@ target/
 **/node_modules
 *.lesson.json
 .etignore
+.DS_Store
+src/.DS_Store
 
 ### STS ###
 .apt_generated

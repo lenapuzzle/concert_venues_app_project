@@ -10,22 +10,26 @@ import java.util.Optional;
 
 @Service
 public class VenueService {
-private VenueRepository venueRepository;
+  private VenueRepository venueRepository;
 
   @Autowired
   public VenueService( VenueRepository venueRepository) {
     this.venueRepository = venueRepository;
   }
 
-public List<Venue> findAllVenues(){
+  public List<Venue> findAllVenues(){
     return (List<Venue>) venueRepository.findAll();
-}
+  }
 
-public Venue save(Venue venue) {
+  public Venue save(Venue venue) {
      return venueRepository.save(venue);
-    }
+  }
 
-    public Optional<Venue> findById(Integer id) {
+  public Optional<Venue> findById(Integer id) {
       return venueRepository.findById(id);
-    }
+  }
+
+  public long count() {
+    return venueRepository.count();
+  }
 }
