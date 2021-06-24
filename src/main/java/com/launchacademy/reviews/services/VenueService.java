@@ -31,5 +31,9 @@ public class VenueService {
 
   public long count() {
     return venueRepository.count();
+    }
+
+  public Venue findByName(String name) {
+    return venueRepository.findByName(name);
   }
 }

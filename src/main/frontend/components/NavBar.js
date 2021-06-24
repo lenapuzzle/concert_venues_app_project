@@ -5,6 +5,7 @@ import ConcertVenueForm from "./ConcertVenueForm";
 import VenueIndex from "./VenueIndex.js";
 import Admin from "./Admin";
 import EditVenue from "./EditVenue";
+import VenueShow from "./VenueShow.js";
 
 const NavBar = (props) => {
   return (
@@ -17,6 +18,7 @@ const NavBar = (props) => {
         <Route exact path="/concert-venues/new" component={ConcertVenueForm} />
         <Route exact path="/admin/concert-venues" component={Admin} />
         <Route exact path="/admin/:id" component={EditVenue} />
+        <Route exact path="/concert-venues/:id" component={VenueShow} />
       </Switch>
     </div>
   );
