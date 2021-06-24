@@ -2,25 +2,28 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router";
 import { useLocation } from "react-router-dom"
 import _ from "lodash";
+import ErrorList from "./ErrorList";
+import VenueField from "./VenueField"
+
 
 const EditReview = (props) => {
 let location = useLocation();
 const [formPayload, setFormPayload] = useState({
-      eventName: "",
-      userName: "",
-      text: "",
-      rating: "",
-      venueId: "",
+      eventName: props.eventName,
+      userName: props.userName,
+      text: props.text,
+      rating: props.rating,
+      venueId: props.venueId,
 });
 
   const [errors, setErrors] = useState({});
   const [shouldRedirect, setShouldRedirect] = useState(false);
-  const id = props.match.params.id;
+  const id = props.id;
 
   const fetchReview = async () => {
     try {
     // RIGHT PATH???
-      const response = await fetch(`/api/v1/venues/${formPayload.venueId}/reviews`);
+      const response = await fetch(`/api/v1/reviews/${id}`);
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`;
         const error = new Error(errorMessage);
@@ -33,9 +36,10 @@ const [formPayload, setFormPayload] = useState({
     }
   };
 
+///api/v1/admin/venues${formPayload.venueId}/reviews`
   const editReview = async () => {
     try {
-      const response = await fetch(`/api/v1/admin/venues${formPayload.venueId}/reviews`, {
+      const response = await fetch(`/api/v1/reviews/${id}`, {
         method: "PUT",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -65,6 +69,7 @@ const [formPayload, setFormPayload] = useState({
     for (const field in formPayload) {
       if (field !== "id" &&
           field !== "text" &&
+          field !== "venueId" &&
           formPayload[field].trim() === "") {
         errors[field] = "is blank";
       }
@@ -164,7 +169,7 @@ const [formPayload, setFormPayload] = useState({
       />
     </div>
 
-    <input className="button" type="submit" value="Add A Review" />
+    <input className="button" type="submit" value="Submit Edit" />
   </form>    
   );
 };

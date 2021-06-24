@@ -78,4 +78,8 @@ public class Venue {
 
   @Column(name = "is_approved")
   private boolean isApproved = false;
+
+  public void addReview(Review review) {
+    this.reviews.add(review);
+  }
 }

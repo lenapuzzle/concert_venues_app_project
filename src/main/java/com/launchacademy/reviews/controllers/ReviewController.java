@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 // RIGHT PATH???
 @RequestMapping("/api/v1/reviews")
 public class ReviewController {
-
   private ReviewService reviewService;
 
   @Autowired
