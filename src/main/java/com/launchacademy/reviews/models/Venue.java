@@ -72,7 +72,7 @@ public class Venue {
   @Column(name = "img_url")
   private String imgUrl;
 
-  @OneToMany(mappedBy = "venue")
+  @OneToMany(mappedBy = "venue", orphanRemoval = true)
   @JsonIgnoreProperties("venue")
   private List<Review> reviews = new ArrayList<>();
 
