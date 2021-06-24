@@ -26,4 +26,8 @@ public class ReviewService {
   public long count() {
     return reviewRepository.count();
   }
+
+  public void delete(Review review) {
+    reviewRepository.delete(review);
+  }
 }
