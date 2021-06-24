@@ -19,6 +19,7 @@ const [formPayload, setFormPayload] = useState({
 
   const fetchReview = async () => {
     try {
+    // RIGHT PATH???
       const response = await fetch(`/api/v1/venues/${formPayload.venueId}/reviews`);
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`;
@@ -58,6 +59,7 @@ const [formPayload, setFormPayload] = useState({
     }
   };
 
+// WHAT ELSE TO ADD???
   const validForSubmission = () => {
     const errors = {};
     for (const field in formPayload) {
@@ -101,6 +103,7 @@ const [formPayload, setFormPayload] = useState({
     fetchReview()
   }, [location.pathname])
 
+ // WHERE TO REDIRECT???
   if (shouldRedirect) {
     return <Redirect push to={`/concert-venues/${id}`} />;
   }
