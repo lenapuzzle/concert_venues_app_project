@@ -91,9 +91,6 @@ public class VenueController {
       Optional<Venue> venueToDelete = venueService.findById(id);
 
       if(venueToDelete.isPresent()){
-        for(Review review : venueToDelete.get().getReviews()){
-          reviewService.delete(review);
-        }
         venueService.delete(venueToDelete.get());
         return new ResponseEntity<>(id, HttpStatus.OK);
       }else{
