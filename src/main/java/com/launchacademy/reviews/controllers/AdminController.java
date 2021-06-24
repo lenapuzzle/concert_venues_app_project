@@ -22,26 +22,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/admin")
 public class AdminController {
 
- private VenueService venueService;
+  private VenueService venueService;
 
- @Autowired
- public AdminController(VenueService venueService) {
-   this.venueService = venueService;
- }
+  @Autowired
+  public AdminController(VenueService venueService) {
+    this.venueService = venueService;
+  }
 
- @PutMapping("/{venueId}")
- public ResponseEntity<Object> modifyVenue(@Valid @RequestBody Venue venue,
-     BindingResult bindingResult, @PathVariable Integer venueId) {
-   venue.setId(venueId);
-   if (bindingResult.hasErrors()) {
-     Map<String, String> errorMap = new ErrorDetails.populateErrors(bindingResult);
-     ErrorDetails errorDetails = new ErrorDetails(new Date(), errorMap,
-         "validation failed on edit");
-     return new ResponseEntity<Object>(errorDetails, HttpStatus.UNPROCESSABLE_ENTITY);
-   }
-   venueService.save(venue);
-   return new ResponseEntity<Object>(venue, HttpStatus.CREATED);
- }
+  @PutMapping("/venues/{venueId}")
+  public ResponseEntity<Object> modifyVenue(@Valid @RequestBody Venue venue,
+      BindingResult bindingResult, @PathVariable Integer venueId) {
+    venue.setId(venueId);
+    if (bindingResult.hasErrors()) {
+      Map<String, String> errorMap = ErrorDetails.populateErrors(bindingResult);
+      ErrorDetails errorDetails = new ErrorDetails(new Date(), errorMap,
+          "validation failed on edit");
+      return new ResponseEntity<Object>(errorDetails, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+    venueService.save(venue);
+    return new ResponseEntity<Object>(venue, HttpStatus.CREATED);
+  }
 }
 
 

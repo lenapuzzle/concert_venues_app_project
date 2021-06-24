@@ -75,4 +75,7 @@ public class Venue {
   @OneToMany(mappedBy = "venue")
   @JsonIgnoreProperties("venue")
   private List<Review> reviews = new ArrayList<>();
+
+  @Column(name = "is_approved")
+  private boolean isApproved = false;
 }

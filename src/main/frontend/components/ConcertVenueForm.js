@@ -8,20 +8,20 @@ import ErrorList from "./ErrorList"
 const ConcertVenueForm = (props) => {
 
   const[formPayload, setFormPayload] = useState({
-    name:"",
-    address:"",
-    city:"",
-    state:"",
-    zipCode:"",
-    capacity:"",
-    description:"",
-    imgUrl:"",
-    phoneNumber:""
+    name: "",
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    capacity: "",
+    description: "",
+    imgUrl: "",
+    phoneNumber: ""
   })
 
-  const [errors, setErrors]= useState({})
+  const [errors, setErrors] = useState({})
   const [shouldRedirect, setShouldRedirect] = useState(false)
-  const [venueId, setVenueId]= useState(null)
+  const [venueId, setVenueId] = useState(null)
 
   const addVenue = async() => {
     try {
@@ -67,15 +67,15 @@ const ConcertVenueForm = (props) => {
 
   const clearForm = () => {
     setFormPayload({
-      name:"",
-      address:"",
-      city:"",
-      state:"",
-      zipCode:"",
-      capacity:"",
-      description:"",
-      imgUrl:"",
-      phoneNumber:""
+      name: "",
+      address: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      capacity: "",
+      description: "",
+      imgUrl: "",
+      phoneNumber: ""
     })
     setErrors({})
   }
