@@ -1,11 +1,12 @@
 package com.launchacademy.reviews.controllers;
 
 import com.launchacademy.reviews.errorHandlers.ErrorDetails;
+import com.launchacademy.reviews.models.Review;
 import com.launchacademy.reviews.models.Venue;
+import com.launchacademy.reviews.services.ReviewService;
 import com.launchacademy.reviews.services.VenueService;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/venues")
 public class VenueController {
-private VenueService venueService;
+  private VenueService venueService;
+  private ReviewService reviewService;
 
   @Autowired
-  public VenueController(VenueService venueService) {
+  public VenueController(VenueService venueService,
+      ReviewService reviewService) {
     this.venueService = venueService;
+    this.reviewService = reviewService;
   }
 
   @GetMapping
@@ -62,4 +66,27 @@ private VenueService venueService;
     return new ResponseEntity<Object>(venueMap, HttpStatus.CREATED);
   }
 
+  @PostMapping("/{id}/reviews")
+  public ResponseEntity<Object> createReview(@Valid @RequestBody Review review, BindingResult bindingResult, @PathVariable Integer id) {
+    if(bindingResult.hasErrors()) {
+      Map<String, String> errorMap = ErrorDetails.populateErrors(bindingResult);
+      ErrorDetails errorDetails = new ErrorDetails(new Date(), errorMap, "Validation Failed");
+      return new ResponseEntity<Object>(errorDetails, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+    Optional<Venue> foundVenue = venueService.findById(id);
+    if(foundVenue.isEmpty()) {
+      return new ResponseEntity<Object>(null, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+    try {
+      review.setVenue(foundVenue.get());
+      Review savedReview = reviewService.save(review);
+      foundVenue.get().addReview(savedReview);
+      venueService.save(foundVenue.get());
+      Map<String, Review> reviewMap = new HashMap<>();
+      reviewMap.put("review", savedReview);
+      return new ResponseEntity<Object>(reviewMap, HttpStatus.CREATED);
+    } catch(IllegalArgumentException e) {
+      return new ResponseEntity<Object>(null, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+  }
 }
