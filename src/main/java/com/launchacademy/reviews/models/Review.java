@@ -51,4 +51,3 @@ public class Review {
   @JsonIgnoreProperties("reviews")
   private Venue venue;
 }
-

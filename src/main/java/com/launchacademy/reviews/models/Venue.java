@@ -72,12 +72,12 @@ public class Venue {
   @Column(name = "img_url")
   private String imgUrl;
 
-  @Column(name = "is_approved")
-  private boolean isApproved = false;
-
   @OneToMany(mappedBy = "venue")
   @JsonIgnoreProperties("venue")
   private List<Review> reviews = new ArrayList<>();
+
+  @Column(name = "is_approved")
+  private boolean isApproved = false;
 
   public void addReview(Review review) {
     this.reviews.add(review);
