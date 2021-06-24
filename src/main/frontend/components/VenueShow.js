@@ -15,7 +15,6 @@ const VenueShow = (props) => {
         throw error;
       }
       const venueData = await response.json();
-      console.log(venueData);
       setVenue(venueData.venue);
     } catch (error) {
       console.error(`There was an error in fetch: ${error}`);
