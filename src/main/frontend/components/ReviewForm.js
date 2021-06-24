@@ -1,25 +1,22 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router";
 import _ from "lodash";
 
-import VenueField from "./VenueField";
 import ErrorList from "./ErrorList";
 
 const ReviewForm = (props) => {
-  const [reviewId, setReviewId] = useState(null);
   const[formPayload, setFormPayload] = useState({
     eventName: "",
     userName: "",
     text: "",
     rating: "",
-    venueId: ""
+    venueId: props.id
     })
 
   const [errors, setErrors] = useState({})
 
   const addReview = async() => {
     try {
-      const response = await fetch(`/api/v1/venues/${formPayload.venueId}/reviews`, {
+      const response = await fetch(`/api/v1/venues/${props.id}/reviews`, {
         method: 'POST',
         headers: new Headers({
           'Content-Type': 'application/json'
@@ -37,7 +34,7 @@ const ReviewForm = (props) => {
         }
       }
       const body = await response.json()
-      setReviewId(body.review.id)
+      props.reviewSubmitted();
     } catch(err) {
       console.error(`Error in fetch: ${err.message}`)
     }
@@ -60,7 +57,7 @@ const ReviewForm = (props) => {
       userName: "",
       text: "",
       rating: "",
-      venueId: "",
+      venueId: props.id
     })
     setErrors({})
   }
@@ -129,14 +126,7 @@ const ReviewForm = (props) => {
         />
       </div>
 
-      <div>
-        <VenueField
-          handleInputChange={handleInputChange}
-          venueId={formPayload.venueId}
-        />
-      </div>
-
-      <input className="button" type="submit" value="Add A Review" />
+      <input className="button" type="submit" value="Submit Your Review" />
     </form>
   );
 };

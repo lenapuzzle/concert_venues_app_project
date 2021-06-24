@@ -78,6 +78,7 @@ public class VenueController {
       return new ResponseEntity<Object>(null, HttpStatus.UNPROCESSABLE_ENTITY);
     }
     try {
+      review.setVenue(foundVenue.get());
       Review savedReview = reviewService.save(review);
       foundVenue.get().addReview(savedReview);
       venueService.save(foundVenue.get());
