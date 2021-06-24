@@ -5,20 +5,22 @@ const VenueTile = (props) => {
   const { id, name, description, imgUrl } = props.venue;
 
   let editButton;
-  if(props.isAdmin) {
-    editButton = <Link to={`/admin/${id}`}>
+  if (props.isAdmin) {
+    editButton = (
+      <Link to={`/admin/${id}`}>
         <button type="button">Edit Venue</button>
       </Link>
+    );
   }
   return (
     <div>
-      <a href={`/concert-venues/${id}`}>
+      <Link to={`/concert-venues/${id}`}>
         <h2>{name}</h2>
-      </a>
+      </Link>
 
-      <a href={`/concert-venues/${id}`}>
+      <Link to={`/concert-venues/${id}`}>
         <img src={imgUrl} />
-      </a>
+      </Link>
 
       <p>{description}</p>
       {editButton}
