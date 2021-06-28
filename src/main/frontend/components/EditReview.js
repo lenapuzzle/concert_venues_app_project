@@ -20,7 +20,6 @@ const EditReview = (props) => {
 
   const fetchReview = async () => {
     try {
-      // RIGHT PATH???
       const response = await fetch(`/api/v1/reviews/${id}`);
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`;

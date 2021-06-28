@@ -14,17 +14,11 @@ const VenueShowReviews = (props) => {
     setReviewEdit(true);
   };
 
-  const handleContinue = (event) => {
-    event.preventDefault();
-    setIsEditSubmitted(false);
-  };
-
   const editReviewSubmitted = () => {
     setIsEditSubmitted(true);
     setReviewEdit(false);
   };
 
-  let editReviewSubmittedResponse;
   let editButton;
   let editReviewForm;
 
@@ -38,10 +32,6 @@ const VenueShowReviews = (props) => {
       />
     );
     editButton = "";
-  } else if (isEditSubmitted) {
-    editReviewSubmittedResponse = (
-      <EditSubmittedTile handleContinue={handleContinue} />
-    );
   } else {
     editButton = (
       <div>
