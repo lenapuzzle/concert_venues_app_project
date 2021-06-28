@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import VenueShowReviews from "./VenueShowReviews.js";
 import ReviewForm from "./ReviewForm.js";
 import ReviewSubmittedTile from "./ReviewSubmittedTile.js";
@@ -8,6 +7,7 @@ const VenueShow = (props) => {
   const [venue, setVenue] = useState({ reviews: [] });
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [isReviewSubmitted, setIsReviewSubmitted] = useState(false);
+  const [successfulEdit, setSuccessfulEdit] = useState(false);
   const venueId = props.match.params.id;
 
   const fetchVenue = async () => {
@@ -27,46 +27,60 @@ const VenueShow = (props) => {
 
   useEffect(() => {
     fetchVenue();
-  }, [isReviewSubmitted]);
+  }, [isReviewSubmitted, successfulEdit]);
+
+  const handleEdit = () => {
+    setSuccessfulEdit(true);
+  };
 
   let reviews = venue.reviews.map((review) => {
-    return <VenueShowReviews key={review.id} review={review} venueId={venueId}/>;
+    return (
+      <VenueShowReviews
+        key={review.id}
+        review={review}
+        venueId={venueId}
+        handleEdit={handleEdit}
+      />
+    );
   });
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     event.preventDefault();
     setShowReviewForm(true);
-  }
+  };
 
-  const handleContinue = event => {
+  const handleContinue = (event) => {
     event.preventDefault();
     setIsReviewSubmitted(false);
-  }
+  };
 
   // Toggles the view of logic below
   const reviewSubmitted = () => {
-    setIsReviewSubmitted(true)
+    setIsReviewSubmitted(true);
     setShowReviewForm(false);
-  }
+  };
 
   let reviewSubmittedResponse;
   let reviewForm;
   let reviewButton;
   // Determines display of reviews or form or submitted page
   if (showReviewForm) {
-    reviewForm = <ReviewForm 
-        id={venueId} 
-        reviewSubmitted = {reviewSubmitted} 
-      />
+    reviewForm = <ReviewForm id={venueId} reviewSubmitted={reviewSubmitted} />;
     reviewButton = "";
-  } else if (isReviewSubmitted){
-    reviewSubmittedResponse = <ReviewSubmittedTile handleContinue={handleContinue} />
+  } else if (isReviewSubmitted) {
+    reviewSubmittedResponse = (
+      <ReviewSubmittedTile handleContinue={handleContinue} />
+    );
   } else {
-    reviewButton = <div>
-        <button type="button" onClick={handleClick}>Add Review</button>
+    reviewButton = (
+      <div>
+        <button type="button" onClick={handleClick}>
+          Add Review
+        </button>
         <h3>Reviews:</h3>
         <div>{reviews}</div>
       </div>
+    );
   }
 
   return (
