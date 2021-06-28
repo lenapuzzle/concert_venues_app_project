@@ -146,6 +146,17 @@ public class ReviewSeeder {
             review12.setRating(10);
             review12.setVenue(wangCenter);
             reviewService.save(review12);
+
+            Review review13 = new Review();
+            review13.setEventName("Neil Inch Nails");
+            review13.setUserName("BeginningoftheEnd");
+            review13.setText("Got to see Nine Inch Nails last night at the Wang Center! Was lucky enough to get front row center mezzanine!!! I love everything about the Wang Center except the congestion walking into the foyer with the bars and merch stand. Could be solved by putting more bars and better sign as you walked in "
+                + "Setlist: The Fragile!!!!!!"
+                + "Sound: Top Top!"
+                + " Views: Can't speak to balcony views but the mezzanine is great and the orchestra is great as along as your not too far back or too far off to the sides. ");
+            review13.setRating(10);
+            review13.setVenue(wangCenter);
+            reviewService.save(review13);
         }
     }
 }

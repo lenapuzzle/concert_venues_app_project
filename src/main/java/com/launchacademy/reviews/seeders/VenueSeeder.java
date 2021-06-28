@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class VenueSeeder {
-  private final VenueService venueService;
+  private  VenueService venueService;
 
   @Autowired
   public VenueSeeder(VenueService venueService) {
@@ -18,8 +18,16 @@ public class VenueSeeder {
 
     Venue venue1 = new Venue();
     Venue venue2 = new Venue();
+    Venue venue3 = new Venue();
+    Venue venue4 = new Venue();
+    Venue venue5 = new Venue();
+    Venue venue6 = new Venue();
+    Venue venue7 = new Venue();
+    Venue venue8 = new Venue();
+    Venue venue9 = new Venue();
 
     if (venueService.count() <= 0) {
+
       venue1.setName("El Corazon");
       venue1.setCity("Seattle");
       venue1.setState("WA");
@@ -48,7 +56,6 @@ public class VenueSeeder {
 
       venueService.save(venue2);
 
-      Venue venue3 = new Venue();
       venue3.setName("The Royale");
       venue3.setCity("Boston");
       venue3.setState("MA");
@@ -63,7 +70,6 @@ public class VenueSeeder {
 
       venueService.save(venue3);
 
-      Venue venue4 = new Venue();
       venue4.setName("The Sinclair");
       venue4.setCity("Cambridge");
       venue4.setState("MA");
@@ -78,7 +84,6 @@ public class VenueSeeder {
 
       venueService.save(venue4);
 
-      Venue venue5 = new Venue();
       venue5.setName("3S Artspace");
       venue5.setCity("Portsmouth");
       venue5.setState("NH");
@@ -93,7 +98,6 @@ public class VenueSeeder {
 
       venueService.save(venue5);
 
-      Venue venue6 = new Venue();
       venue6.setName("Great American Music Hall");
       venue6.setCity("San Francisco");
       venue6.setState("CA");
@@ -108,7 +112,6 @@ public class VenueSeeder {
 
       venueService.save(venue6);
 
-      Venue venue7 = new Venue();
       venue7.setName("Hampton Beach Casino Ballroom");
       venue7.setCity("Hampton");
       venue7.setState("NH");
@@ -123,7 +126,6 @@ public class VenueSeeder {
 
       venueService.save(venue7);
 
-      Venue venue8 = new Venue();
       venue8.setName("Thalia Hall");
       venue8.setCity("Chicago");
       venue8.setState("IL");
@@ -137,7 +139,6 @@ public class VenueSeeder {
 
       venueService.save(venue8);
 
-      Venue venue9 = new Venue();
       venue9.setName("Boch Center - Wang Theatre");
       venue9.setCity("Boston");
       venue9.setState("MA");
