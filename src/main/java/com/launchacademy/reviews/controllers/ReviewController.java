@@ -27,10 +27,10 @@ public class ReviewController {
     this.reviewService = reviewService;
   }
 
-  @GetMapping("/{Id}")
-  public  ResponseEntity<Map<String,Review>> getReview(@PathVariable Integer Id){
+  @GetMapping("/{id}")
+  public  ResponseEntity<Map<String,Review>> getReview(@PathVariable Integer id){
     Map<String, Review> requestedReview = new HashMap<>();
-    Optional<Review> queriedReview = reviewService.findById(Id);
+    Optional<Review> queriedReview = reviewService.findById(id);
     if(queriedReview.isPresent()){
       requestedReview.put("review", queriedReview.get());
       return new ResponseEntity<Map<String,Review>>(requestedReview, HttpStatus.OK);
@@ -46,11 +46,12 @@ public class ReviewController {
     if (bindingResult.hasErrors()) {
       Map<String, String> errorMap = ErrorDetails.populateErrors(bindingResult);
       ErrorDetails errorDetails = new ErrorDetails(new Date(), errorMap,
-          "validation failed on edit");
+              "validation failed on edit");
       return new ResponseEntity<Object>(errorDetails, HttpStatus.UNPROCESSABLE_ENTITY);
     }
     reviewService.save(review);
     return new ResponseEntity<Object>(review, HttpStatus.CREATED);
+  }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<Object> deleteReview (@PathVariable Integer id) {

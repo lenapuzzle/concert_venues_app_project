@@ -7,8 +7,6 @@ const VenueShowReviews = (props) => {
   const [reviewEdit, setReviewEdit] = useState(false);
   const [isEditSubmitted, setIsEditSubmitted] = useState(false);
 
-  useEffect(() => {}, [isEditSubmitted]);
-
   const handleClick = (event) => {
     event.preventDefault();
     setReviewEdit(true);

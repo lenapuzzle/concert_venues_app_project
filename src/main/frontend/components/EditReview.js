@@ -27,7 +27,6 @@ const EditReview = (props) => {
         throw error;
       }
       const responseBody = await response.json();
-      console.log(responseBody);
       setFormPayload(responseBody.review);
     } catch (error) {
       console.error(`There was an error in fetch: ${error}`);
@@ -78,22 +77,10 @@ const EditReview = (props) => {
     return _.isEmpty(errors);
   };
 
-  const resetForm = () => {
-    setFormPayload({
-      eventName: "",
-      userName: "",
-      text: "",
-      rating: "",
-      venueId: "",
-    });
-    setErrors({});
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validForSubmission()) {
       editReview(formPayload);
-      resetForm();
     }
   };
 
