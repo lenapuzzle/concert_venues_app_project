@@ -3,6 +3,8 @@ package com.launchacademy.reviews.services;
 import com.launchacademy.reviews.models.Review;
 import com.launchacademy.reviews.repositories.ReviewRepository;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +27,9 @@ public class ReviewService {
 
   public long count() {
     return reviewRepository.count();
+  }
+
+  public Optional<Review> findById(Integer id) {
+    return reviewRepository.findById(id);
   }
 }

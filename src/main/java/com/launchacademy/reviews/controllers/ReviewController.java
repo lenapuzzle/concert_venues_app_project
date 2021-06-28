@@ -5,17 +5,15 @@ import com.launchacademy.reviews.models.Review;
 import com.launchacademy.reviews.models.Venue;
 import com.launchacademy.reviews.services.ReviewService;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 //@RequestMapping("/api/v1/venues/{id}")
@@ -28,11 +26,25 @@ public class ReviewController {
   public ReviewController(ReviewService reviewService) {
     this.reviewService = reviewService;
   }
+
+
+  @GetMapping("/{Id}")
+  public  ResponseEntity<Map<String,Review>> getReview(@PathVariable Integer Id){
+    Map<String, Review> requestedReview = new HashMap<>();
+    Optional<Review> queriedReview = reviewService.findById(Id);
+    if(queriedReview.isPresent()){
+      requestedReview.put("review", queriedReview.get());
+      return new ResponseEntity<Map<String,Review>>(requestedReview, HttpStatus.OK);
+    }else{
+      return new ResponseEntity<Map<String,Review>>(requestedReview, HttpStatus.NOT_FOUND);
+    }
+  }
+
   // RIGHT PATH???
-  @PutMapping("/venues/{venueId}/reviews")
+  @PutMapping("/{id}")
   public ResponseEntity<Object> modifyReview(@Valid @RequestBody Review review,
-      BindingResult bindingResult, @PathVariable Integer reviewId) {
-    review.setId(reviewId);
+      BindingResult bindingResult, @PathVariable Integer id) {
+    review.setId(id);
     if (bindingResult.hasErrors()) {
       Map<String, String> errorMap = ErrorDetails.populateErrors(bindingResult);
       ErrorDetails errorDetails = new ErrorDetails(new Date(), errorMap,

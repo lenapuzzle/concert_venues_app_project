@@ -3,44 +3,53 @@ import EditSubmittedTile from "./EditSubmittedTile";
 import EditReview from "./EditReview";
 
 const VenueShowReviews = (props) => {
-  const { eventName, userName, text, rating, id} = props.review;
+  const { eventName, userName, text, rating, id } = props.review;
   const [reviewEdit, setReviewEdit] = useState(false);
   const [isEditSubmitted, setIsEditSubmitted] = useState(false);
 
-   useEffect(() => {
-  }, [isEditSubmitted]);
+  useEffect(() => {}, [isEditSubmitted]);
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     event.preventDefault();
-      setReviewEdit(true);
-  }
+    setReviewEdit(true);
+  };
 
-  const handleContinue = event => {
+  const handleContinue = (event) => {
     event.preventDefault();
     setIsEditSubmitted(false);
-  }
+  };
 
   const editReviewSubmitted = () => {
-    setIsEditSubmitted(true)
+    setIsEditSubmitted(true);
     setReviewEdit(false);
-  }
+  };
 
   let editReviewSubmittedResponse;
   let editButton;
   let editReviewForm;
 
   if (reviewEdit) {
-    editReviewForm = <EditReview 
-        id={id} 
-        reviewSubmitted = {editReviewSubmitted} 
+    editReviewForm = (
+      <EditReview
+        id={id}
+        handleEdit={props.handleEdit}
+        reviewSubmitted={editReviewSubmitted}
+        venueId={props.venueId}
       />
+    );
     editButton = "";
-  } else if (isEditSubmitted){
-    editReviewSubmittedResponse = <EditSubmittedTile handleContinue={handleContinue} />
+  } else if (isEditSubmitted) {
+    editReviewSubmittedResponse = (
+      <EditSubmittedTile handleContinue={handleContinue} />
+    );
   } else {
-    editButton = <div>
-        <button type="button" onClick={handleClick}>Edit Review</button>
+    editButton = (
+      <div>
+        <button type="button" onClick={handleClick}>
+          Edit Review
+        </button>
       </div>
+    );
   }
 
   return (
@@ -57,9 +66,8 @@ const VenueShowReviews = (props) => {
       <p>
         <span>{text}</span>
       </p>
-        {editButton}
-        {editReviewForm}  
-
+      {editButton}
+      {editReviewForm}
     </div>
   );
 };
