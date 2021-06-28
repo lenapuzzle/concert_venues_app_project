@@ -30,7 +30,7 @@ const VenueShow = (props) => {
   }, [isReviewSubmitted]);
 
   let reviews = venue.reviews.map((review) => {
-    return <VenueShowReviews key={review.id} review={review} />;
+    return <VenueShowReviews key={review.id} review={review} venueId={venueId}/>;
   });
 
   const handleClick = event => {
