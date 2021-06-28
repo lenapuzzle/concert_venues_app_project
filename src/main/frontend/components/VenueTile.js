@@ -49,7 +49,7 @@ const VenueTile = (props) => {
   }
 
   return (
-    <div className={"purple"}>
+    <div className={"tile"}>
       <Link to={`/concert-venues/${id}`}>
         <h2>{name}</h2>
       </Link>
