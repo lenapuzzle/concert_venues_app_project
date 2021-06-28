@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router";
-import { useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom";
 import _ from "lodash";
 
 import StateDropdown from "./StateDropdown";
@@ -17,7 +17,7 @@ const EditVenue = (props) => {
     capacity: "",
     description: "",
     imgUrl: "",
-    phoneNumber: ""
+    phoneNumber: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -68,18 +68,20 @@ const EditVenue = (props) => {
   const validForSubmission = () => {
     const errors = {};
     for (const field in formPayload) {
-      if (field !== "capacity" &&
-          field !== "description" &&
-          field !== "id" &&
-          field !== "reviews" &&
-          field !== "approved" &&
-          formPayload[field].trim() === "") {
+      if (
+        field !== "capacity" &&
+        field !== "description" &&
+        field !== "id" &&
+        field !== "reviews" &&
+        field !== "approved" &&
+        formPayload[field].trim() === ""
+      ) {
         errors[field] = "is blank";
       }
     }
-      setErrors(errors);
-      return _.isEmpty(errors);
-  }
+    setErrors(errors);
+    return _.isEmpty(errors);
+  };
 
   const resetForm = () => {
     setFormPayload({
@@ -91,7 +93,7 @@ const EditVenue = (props) => {
       capacity: "",
       description: "",
       imgUrl: "",
-      phoneNumber: ""
+      phoneNumber: "",
     });
     setErrors({});
   };
@@ -112,13 +114,13 @@ const EditVenue = (props) => {
   };
 
   useEffect(() => {
-    fetchVenue()
-  }, [location.pathname])
+    fetchVenue();
+  }, [location.pathname]);
 
   if (shouldRedirect) {
     return <Redirect push to={`/concert-venues/${id}`} />;
   }
-  
+
   return (
     <form onSubmit={handleSubmit}>
       <ErrorList errors={{ ...errors, ...props.errors }} />
