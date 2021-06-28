@@ -66,7 +66,7 @@ public class VenueSeeder {
       venue3.setDescription("Spacious multilevel megaclub draws trendy crowds for DJs, dancing & live-music shows.");
 
       venue3.setImgUrl(
-          "https://cdn.wedding-spot.com/__sized__/images/venues/3956/Royale-Boston-MA-99fe4157-686d-41a1-a5e4-1fcf173da8e8-97450e389c42885476f1fbe9bc5bca5a.jpg");
+          "https://royaleboston.com/wp-content/uploads/2018/06/16114501_1354904757905809_2790556672887727324_n-300x200.jpg");
 
       venueService.save(venue3);
 
@@ -122,7 +122,7 @@ public class VenueSeeder {
       venue7.setDescription(
           "The Hampton Beach Casino Ballroom is a seasonal live music and comedy venue located on the boardwalk of Hampton Beach, New Hampshire, United States. The venue is open from April to November, and within those eight months schedules upwards of 70 shows.");
       venue7.setImgUrl(
-          "https://www.gannett-cdn.com/presto/2020/11/23/NPOH/d443c490-6c73-4e11-9342-5ad624543801-18April-HB-Casino-COVIDsign.jpg?crop=2229,1672,x145,y0&quality=50&width=640");
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT4FLgj0cTnrhhAjvbAzUzXYzwSOZwhWHa9u5wa97jPYeQqee9c059nL2HfPqBTHXPe3Y&usqp=CAU");
 
       venueService.save(venue7);
 
