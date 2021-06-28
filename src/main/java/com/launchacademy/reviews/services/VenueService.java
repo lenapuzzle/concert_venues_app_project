@@ -36,4 +36,8 @@ public class VenueService {
   public Venue findByName(String name) {
     return venueRepository.findByName(name);
   }
+
+  public void delete(Venue venue) {
+    venueRepository.delete(venue);
+  }
 }

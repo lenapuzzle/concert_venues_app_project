@@ -15,18 +15,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
-//@RequestMapping("/api/v1/venues/{id}")
-// RIGHT PATH???
 @RequestMapping("/api/v1/reviews")
 public class ReviewController {
+
   private ReviewService reviewService;
 
   @Autowired
   public ReviewController(ReviewService reviewService) {
     this.reviewService = reviewService;
   }
-
 
   @GetMapping("/{Id}")
   public  ResponseEntity<Map<String,Review>> getReview(@PathVariable Integer Id){
@@ -40,7 +39,6 @@ public class ReviewController {
     }
   }
 
-  // RIGHT PATH???
   @PutMapping("/{id}")
   public ResponseEntity<Object> modifyReview(@Valid @RequestBody Review review,
       BindingResult bindingResult, @PathVariable Integer id) {
@@ -53,5 +51,14 @@ public class ReviewController {
     }
     reviewService.save(review);
     return new ResponseEntity<Object>(review, HttpStatus.CREATED);
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Object> deleteReview (@PathVariable Integer id) {
+    Optional<Review> reviewToDelete = reviewService.findById(id);
+    if(reviewToDelete.isPresent()) {
+      reviewService.delete(reviewToDelete.get());
+      return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+    return new ResponseEntity<>(id, HttpStatus.NOT_FOUND);
   }
 }

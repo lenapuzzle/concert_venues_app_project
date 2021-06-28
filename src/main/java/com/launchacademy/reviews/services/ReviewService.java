@@ -29,6 +29,10 @@ public class ReviewService {
     return reviewRepository.count();
   }
 
+  public void delete(Review review) {
+    reviewRepository.delete(review);
+  }
+
   public Optional<Review> findById(Integer id) {
     return reviewRepository.findById(id);
   }
