@@ -10,7 +10,7 @@ import VenueShow from "./VenueShow.js";
 const NavBar = (props) => {
   return (
     <div>
-      <h1 className="coName">Live From Here</h1>
+      <h1 className="coName">'Live' From Here</h1>
       <Switch>
         <Route exact path="/">
           <Redirect to="/concert-venues" />

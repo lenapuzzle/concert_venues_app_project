@@ -43,15 +43,10 @@ a {
 .tile {
   width: 36%;
   padding: 40px;
-  background-color: #f2f2f2;
+  background-color: rgba(242, 242, 242, 0.85);
   margin-bottom: 40px;
   margin-top: 40px;
-  border-radius: 5%;
-}
-
-img.show {
-  max-height: 400px;
-  max-width: 100%;
+  border-radius: 40px;
 }
 
 img {
@@ -61,4 +56,19 @@ img {
 
 .show {
   width: 100%;
+}
+
+div.show img {
+  max-height: 400px;
+  max-width: 100%;
+}
+
+.review {
+  background-color: #735661;
+  color: #f2f2f2;
+  width: 80%;
+  padding: 40px 10%;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border-radius: 20px;
 }

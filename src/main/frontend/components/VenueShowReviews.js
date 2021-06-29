@@ -73,7 +73,7 @@ const VenueShowReviews = (props) => {
   }
 
   return (
-    <div>
+    <div className="review">
       <div>
         <span>{userName}</span>
       </div>
