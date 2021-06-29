@@ -8,23 +8,7 @@ import EditVenue from "./EditVenue";
 import VenueShow from "./VenueShow.js";
 
 const NavBar = (props) => {
-
-const [concertVenues, setConcertVenues] = useState([])
-const venueName = props.match.params.type
-
-const fetchConcertVenues = async () => {
-  try {
-    const response = await fetch(`/api/v1/venues/${venueId}`);
-    if (!response.ok) {
-      const errorMessage = `${response.status} (${response.statusText})`;
-      const error = new Error(errorMessage);
-      throw error;
-    }
-  } catch (error) {
-    console.error(`There was an error in fetch: ${error}`);
-  }
-}
-
+  
   return (
     <div className="row column">
       <div className="navbar">
