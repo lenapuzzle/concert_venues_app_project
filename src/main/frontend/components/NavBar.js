@@ -10,7 +10,6 @@ import VenueShow from "./VenueShow.js";
 const NavBar = (props) => {
 
 const [concertVenues, setConcertVenues] = useState([])
-
 const venueName = props.match.params.type
 
 const fetchConcertVenues = async () => {
@@ -32,22 +31,13 @@ const fetchConcertVenues = async () => {
    fetchConcertVenues()
  },[venueName])
 
-  const concertVenuesLinks = concertVenues.map(venue => {
-    let venueName = venue.name
-  return (
-  <Link to={`/concert-venues/${venue.id}`} key={venue.id}> {venueName}</Link>
-  )})
-
-
   return (
     <div className="row column">
     <div className="navbar">
     </div>
     <nav>
         <Link to="/">Home</Link>|
-        {concertVenuesLinks}
         <Link to="/concert-venues">Venues</Link>|
-
         <Link to="/concert-venues/new">Add Venue</Link>
       </nav>
       <div className="navbar">
@@ -64,7 +54,7 @@ const fetchConcertVenues = async () => {
         <Route exact path="/concert-venues/:id" component={VenueShow} />
       </Switch>
     </div>
-  );
-};
+  )
+}
 
 export default NavBar;
