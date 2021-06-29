@@ -78,56 +78,62 @@ const ReviewForm = (props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ErrorList errors={{ ...errors, ...props.errors }} />
-      <div>
-        <label htmlFor="eventName"> EventName:</label>
-        <input
-          name="eventName"
-          id="eventName"
-          type="text"
-          value={formPayload.eventName}
-          onChange={handleInputChange}
-        />
-      </div>
+    <div className="review-form tile">
+      <form onSubmit={handleSubmit}>
+        <ErrorList errors={{ ...errors, ...props.errors }} />
+        <div className="form-input">
+          <label htmlFor="eventName"> EventName:</label>
+          <input
+            name="eventName"
+            id="eventName"
+            type="text"
+            value={formPayload.eventName}
+            onChange={handleInputChange}
+            className="input-box"
+          />
+        </div>
 
-      <div>
-        <label htmlFor="userName">User Name:</label>
-        <input
-          name="userName"
-          id="userName"
-          type="text"
-          value={formPayload.userName}
-          onChange={handleInputChange}
-        />
-      </div>
+        <div className="form-input">
+          <label htmlFor="userName">User Name:</label>
+          <input
+            name="userName"
+            id="userName"
+            type="text"
+            value={formPayload.userName}
+            onChange={handleInputChange}
+            className="input-box"
+          />
+        </div>
 
-      <div>
-        <label htmlFor="text">Review:</label>
-        <input
-          name="text"
-          id="text"
-          type="text"
-          value={formPayload.text}
-          onChange={handleInputChange}
-        />
-      </div>
+        <div className="form-input">
+          <label htmlFor="text">Review:</label>
+          <input
+            name="text"
+            id="text"
+            type="text"
+            value={formPayload.text}
+            onChange={handleInputChange}
+            className="input-box"
+          />
+        </div>
 
-      <div>
-        <label htmlFor="rating">Rating:</label>
-        <input
-          name="rating"
-          id="rating"
-          type="number"
-          min="1"
-          max="10"
-          value={formPayload.rating}
-          onChange={handleInputChange}
-        />
-      </div>
+        <div className="form-input">
+          <label htmlFor="rating">Rating:</label>
+          <input
+            name="rating"
+            id="rating"
+            type="number"
+            min="1"
+            max="10"
+            value={formPayload.rating}
+            onChange={handleInputChange}
+            className="input-box"
+          />
+        </div>
 
-      <input className="button" type="submit" value="Submit Your Review" />
-    </form>
+        <input className="button" type="submit" value="Submit Your Review" />
+      </form>
+    </div>
   );
 };
 

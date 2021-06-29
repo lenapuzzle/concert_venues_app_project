@@ -74,10 +74,10 @@ const VenueShow = (props) => {
   } else {
     reviewButton = (
       <div>
-        <button type="button" onClick={handleClick}>
+        <button type="button" className="button" onClick={handleClick}>
           Add Review
         </button>
-        <h3>Reviews:</h3>
+        <h3 className="fancy-call-out">Reviews:</h3>
         <div>{reviews}</div>
       </div>
     );
@@ -92,21 +92,17 @@ const VenueShow = (props) => {
         <img src={venue.imgUrl} />
       </div>
       <div>
-        <p>{venue.description}</p>
+        <p>{venue.description} <span className="deemphasize"> (Capacity: {venue.capacity})</span></p>
       </div>
-      <h3>Address:</h3>
+      <h3>Contact Info</h3>
       <div>
         <span>{venue.address}, </span>
         <span>{venue.city}, </span>
         <span>{venue.state} </span>
         <span>{venue.zipCode}</span>
       </div>
-      <h3>Phone Number:</h3>
       <div>
         <span>{venue.phoneNumber}</span>
-      </div>
-      <div>
-        <h4>Capacity: {venue.capacity}</h4>
       </div>
       {reviewButton}
       {reviewSubmittedResponse}

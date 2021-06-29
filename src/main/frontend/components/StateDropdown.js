@@ -3,7 +3,6 @@ import React from "react";
 const StateDropdown = props =>{
  return (
    <div>
-     <label htmlFor= "state"> State:</label>
       <select name = "state" id = "state" onChange={props.handleInputChange} value= {props.state} >
         <option value="  ">  </option>
         <option value="AL">Alabama</option>

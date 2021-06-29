@@ -10,6 +10,12 @@ body {
   background-color: #ccc;
   font-family: "Roboto Condensed", sans-serif;
   flex-direction: column;
+  color: #0d0d0d;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;  
 }
 
 h1 {
@@ -18,19 +24,54 @@ h1 {
 
 h2 {
   font-size: 2em;
+  margin-bottom: 40px;
+}
+
+h3 {
+  margin-bottom: 20px;
+}
+
+h4 {
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 20px;
 }
 
 .coName {
   font-family: "Unica One", cursive;
 }
 
+.highlight {
+  color: #400601;
+  font-weight: bold;
+}
+
+.deemphasize {
+  font-size: .8em;
+  color: gray;
+}
+
+.description-text {
+  margin-top: 5px;
+}
+
 .slogan {
   font-size: 1.1em;
+}
+
+.fancy-call-out {
+  font-family: "Unica One", cursive;
+  font-size: 2em;
+  margin-top: 40px;
+  margin-bottom: 10px;
 }
 
 a {
   text-decoration: none;
   color: #0d0d0d;
+  margin-bottom: 40px;
 }
 
 .tile-container {
@@ -52,6 +93,7 @@ a {
 img {
   max-width: 200px;
   max-height: 200px;
+  margin-bottom: 40px;
 }
 
 .show {
@@ -64,11 +106,41 @@ div.show img {
 }
 
 .review {
-  background-color: #735661;
+  background-color: rgba(115, 86, 97, 0.9);
   color: #f2f2f2;
   width: 80%;
   padding: 40px 10%;
-  margin-top: 40px;
   margin-bottom: 40px;
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-box {
+  min-width: 70%;
+}
+
+.button {
+  font-family: "Roboto Condensed", sans-serif;
+  border-radius: 5px;
+  color: #0d0d0d;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100px;
+}
+
+.form {
+  width: 70%;
+  height: 400px;
+}
+
+.review-form {
+  width: 70%;
+  height: 200px;
+}
+
+.form-input {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
