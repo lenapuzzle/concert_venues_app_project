@@ -84,7 +84,7 @@ const VenueShow = (props) => {
   }
 
   return (
-    <div>
+    <div className="tile show">
       <div>
         <h2>{venue.name}</h2>
       </div>
