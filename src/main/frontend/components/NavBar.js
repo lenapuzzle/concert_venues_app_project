@@ -8,8 +8,51 @@ import EditVenue from "./EditVenue";
 import VenueShow from "./VenueShow.js";
 
 const NavBar = (props) => {
+
+const [concertVenues, setConcertVenues] = useState([])
+
+const venueName = props.match.params.type
+
+const fetchConcertVenues = async () => {
+  try {
+    const response = await fetch(`/api/v1/venues/${venueId}`);
+    if (!response.ok) {
+      const errorMessage = `${response.status} (${response.statusText})`;
+      const error = new Error(errorMessage);
+      throw error;
+    }
+    const venueData = await response.json();
+    setVenue(venueData.venue);
+  } catch (error) {
+    console.error(`There was an error in fetch: ${error}`);
+  }
+}
+
+ useEffect(() => {
+   fetchConcertVenues()
+ },[venueName])
+
+  const concertVenuesLinks = concertVenues.map(venue => {
+    let venueName = venue.name
   return (
-    <div>
+  <Link to={`/concert-venues/${venue.id}`} key={venue.id}> {venueName}</Link>
+  )})
+
+
+  return (
+    <div className="row column">
+    <div className="navbar">
+    </div>
+    <nav>
+        <Link to="/">Home</Link>|
+        {concertVenuesLinks}
+        <Link to="/concert-venues">Venues</Link>|
+
+        <Link to="/concert-venues/new">Add Venue</Link>
+      </nav>
+      <div className="navbar">
+      
+    </div>
       <Switch>
         <Route exact path="/">
           <Redirect to="/concert-venues" />
