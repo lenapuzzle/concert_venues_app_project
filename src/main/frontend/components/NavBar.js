@@ -8,9 +8,21 @@ import EditVenue from "./EditVenue";
 import VenueShow from "./VenueShow.js";
 
 const NavBar = (props) => {
+  
   return (
     <div>
-      <h1 className="coName">'Live' From Here</h1>
+      <div>
+        <h1 className="coName">'Live' From Here</h1>
+      </div>
+      
+      <div>
+        <nav>
+          <Link to="/">Home</Link>|
+          <Link to="/concert-venues">Venues</Link>|
+          <Link to="/concert-venues/new">Add Venue</Link>
+        </nav>
+      </div>
+     
       <Switch>
         <Route exact path="/">
           <Redirect to="/concert-venues" />
@@ -21,8 +33,9 @@ const NavBar = (props) => {
         <Route exact path="/admin/:id" component={EditVenue} />
         <Route exact path="/concert-venues/:id" component={VenueShow} />
       </Switch>
+  
     </div>
-  );
-};
+  )
+}
 
 export default NavBar;

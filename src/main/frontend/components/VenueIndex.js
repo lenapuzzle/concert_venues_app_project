@@ -36,7 +36,9 @@ const VenueIndex = (props) => {
   return (
     <div>
       {header}
-      <div className={"tile-container"}>{venueTiles}</div>
+      <div className="tile-container">
+        {venueTiles}
+      </div>
     </div>
   );
 };
