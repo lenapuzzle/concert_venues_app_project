@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import VenueShowReviews from "./VenueShowReviews.js";
 import ReviewForm from "./ReviewForm.js";
 import ReviewSubmittedTile from "./ReviewSubmittedTile.js";
+import MapComponent from "./MapComponent.js";
 
 const VenueShow = (props) => {
   const [venue, setVenue] = useState({ reviews: [] });
@@ -111,6 +112,7 @@ const VenueShow = (props) => {
       {reviewButton}
       {reviewSubmittedResponse}
       {reviewForm}
+      <MapComponent />
     </div>
   );
 };

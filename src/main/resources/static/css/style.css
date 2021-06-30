@@ -27,3 +27,13 @@ img {
   max-width: 200px;
   max-height: 200px;
 }
+
+.map-container {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#map {
+  height: 100%;
+}
