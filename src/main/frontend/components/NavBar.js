@@ -11,16 +11,19 @@ const NavBar = (props) => {
   
   return (
     <div>
-      <div>
-        <h1 className="coName">'Live' From Here</h1>
-      </div>
-      
-      <div>
-        <nav>
-          <Link to="/">Home</Link>|
-          <Link to="/concert-venues">Venues</Link>|
-          <Link to="/concert-venues/new">Add Venue</Link>
-        </nav>
+      <div className="header">
+        <div className="left">
+          <Link to="/">
+            <h1 className="coName">'Live' From Here</h1>
+          </Link>|
+        </div>
+        
+        <div className="right">
+          <nav>
+            <Link to="/concert-venues">Venues</Link>|
+            <Link to="/concert-venues/new">Add Venue</Link>
+          </nav>
+        </div>
       </div>
      
       <Switch>
