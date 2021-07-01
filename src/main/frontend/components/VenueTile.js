@@ -37,7 +37,7 @@ const VenueTile = (props) => {
           <button type="button">Edit Venue</button>
         </Link>
 
-        <button type="button" onClick={handleButtonClick}>
+        <button type="button" className="button" onClick={handleButtonClick}>
           Delete Venue
         </button>
       </div>

@@ -10,15 +10,20 @@ import VenueShow from "./VenueShow.js";
 const NavBar = (props) => {
   
   return (
-    <div className="row column">
-      <div className="navbar">
+    <div>
+      <div className="header">
+        <div className="left">
+          <Link to="/">
+            <h1 className="coName">'Live' From Here</h1>
+          </Link>
         </div>
+        
+        <div className="right">
           <nav>
-            <Link to="/">Home</Link>|
             <Link to="/concert-venues">Venues</Link>|
             <Link to="/concert-venues/new">Add Venue</Link>
           </nav>
-        <div className="navbar">
+        </div>
       </div>
      
       <Switch>

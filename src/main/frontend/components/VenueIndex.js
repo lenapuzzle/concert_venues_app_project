@@ -25,18 +25,18 @@ const VenueIndex = (props) => {
   }, []);
 
   const venueTiles = venues.map((venue) => {
-    return <VenueTile key={venue.id} venue={venue} isAdmin={props.isAdmin}/>;
+    return <VenueTile key={venue.id} venue={venue} isAdmin={props.isAdmin} />;
   });
 
   let header;
-  if(!props.isAdmin) {
-    header = <h1>Venues</h1>
+  if (!props.isAdmin) {
+    header = <p className="slogan">Inside Knowledge of Your Favorite Venues</p>;
   }
 
   return (
     <div>
       {header}
-      <div className={"tile-container"}>
+      <div className="tile-container">
         {venueTiles}
       </div>
     </div>

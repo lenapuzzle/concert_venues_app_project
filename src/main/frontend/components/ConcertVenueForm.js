@@ -100,108 +100,120 @@ const ConcertVenueForm = (props) => {
   }
 
   return(
-    <form  onSubmit={handleSubmit}>
-      <ErrorList errors={{...errors, ...props.errors}} />
-      <div>
-        <label htmlFor="name">Name:</label>
-        <input
-          name= "name"
-          id="name"
-          type="text"
-          value={formPayload.name}
-          onChange={handleInputChange}
-        />
-      </div>
+    <div className="form tile">
+      <h3>Add a Venue</h3>
+      <form  onSubmit={handleSubmit}>
+        <ErrorList errors={{...errors, ...props.errors}} />
+        <div className="form-input">
+          <label htmlFor="name">Name: </label>
+          <input
+            name= "name"
+            id="name"
+            type="text"
+            value={formPayload.name}
+            onChange={handleInputChange}
+            className="input-box"
+          />
+        </div>
 
-      <div>
-        <label htmlFor="address">Address:</label>
-        <input
-          name= "address"
-          id="address"
-          type="text"
-          value={formPayload.address}
-          onChange={handleInputChange}
-        />
-      </div>
+        <div className="form-input">
+          <label htmlFor="address">Address: </label>
+          <input
+            name= "address"
+            id="address"
+            type="text"
+            value={formPayload.address}
+            onChange={handleInputChange}
+            className="input-box"
+          />
+        </div>
 
-      <div>
-        <label htmlFor="city">City:</label>
-        <input
-          name= "city"
-          id="city"
-          type="text"
-          value={formPayload.city}
-          onChange={handleInputChange}
-        />
-      </div>
+        <div className="form-input">
+          <label htmlFor="city">City: </label>
+          <input
+            name= "city"
+            id="city"
+            type="text"
+            value={formPayload.city}
+            onChange={handleInputChange}
+            className="input-box"
+          />
+        </div>
 
-      <div>
-        <StateDropdown
-          handleInputChange={handleInputChange}
-          state={formPayload.state}
-        />
-      </div>
+        <div className="form-input">
+          <label htmlFor= "state"> State: </label>
+          <StateDropdown
+            handleInputChange={handleInputChange}
+            state={formPayload.state}
+          />
+        </div>
 
-      <div>
-        <label htmlFor="zipCode">Zip Code:</label>
-        <input
-          name= "zipCode"
-          id="zipCode"
-          type="text"
-          value={formPayload.zipCode}
-          onChange={handleInputChange}
-        />
-      </div>
+        <div className="form-input">
+          <label htmlFor="zipCode">Zip Code: </label>
+          <input
+            name= "zipCode"
+            id="zipCode"
+            type="text"
+            value={formPayload.zipCode}
+            onChange={handleInputChange}
+            className="input-box"
+          />
+        </div>
 
-      <div>
-        <label htmlFor="phoneNumber">Phone Number:</label>
-        <input
-          name= "phoneNumber"
-          id="phoneNumber"
-          type="tel"
-          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-          value={formPayload.phoneNumber}
-          onChange={handleInputChange}
-        />
-        <small>Format: 123-456-7890</small>
-      </div>
+        <div className="form-input">
+          <label htmlFor="phoneNumber">Phone Number: </label>
+          <input
+            name= "phoneNumber"
+            id="phoneNumber"
+            type="tel"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            placeholder="XXX-XXX-XXXX"
+            value={formPayload.phoneNumber}
+            onChange={handleInputChange}
+            className="input-box"
+          />
+        </div>
 
-      <div>
-        <label htmlFor="description">Description:</label>
-        <input
-          name= "description"
-          id="description"
-          type="text"
-          value={formPayload.description}
-          onChange={handleInputChange}
-        />
-      </div>
+        <div className="form-input">
+          <label htmlFor="description">Description: </label>
+          <textarea
+            name= "description"
+            id="description"
+            type="text"
+            value={formPayload.description}
+            onChange={handleInputChange}
+            className="input-box"
+          ></textarea>
+        </div>
 
-      <div>
-        <label htmlFor="capacity">Capacity:</label>
-        <input
-          name= "capacity"
-          id="capacity"
-          type="number"
-          min="0"
-          value={formPayload.capacity}
-          onChange={handleInputChange}
-        />
-      </div>
+        <div className="form-input">
+          <label htmlFor="capacity">Capacity: </label>
+          <input
+            name= "capacity"
+            id="capacity"
+            type="number"
+            min="0"
+            value={formPayload.capacity}
+            onChange={handleInputChange}
+            className="input-box"
+          />
+        </div>
 
-      <div>
-        <label htmlFor="imgUrl">Img Url:</label>
-        <input
-          name= "imgUrl"
-          id="imgUrl"
-          type="text"
-          value={formPayload.imgUrl}
-          onChange={handleInputChange}
-        />
-      </div>
+        <div className="form-input">
+          <label htmlFor="imgUrl">Img Url: </label>
+          <input
+            name= "imgUrl"
+            id="imgUrl"
+            type="text"
+            value={formPayload.imgUrl}
+            onChange={handleInputChange}
+            className="input-box"
+          />
+        </div>
 
-      <input className="button" type="submit" value="Submit" />
-    </form>
+        <input className="button" type="submit" value="Submit" />
+      </form>
+    </div>
   )
 }
 

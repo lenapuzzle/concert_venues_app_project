@@ -33,7 +33,7 @@ const VenueShowReviews = (props) => {
   } else {
     editButton = (
       <div>
-        <button type="button" onClick={handleClick}>
+        <button type="button" className="button" onClick={handleClick}>
           Edit Review
         </button>
       </div>
@@ -73,24 +73,26 @@ const VenueShowReviews = (props) => {
   }
 
   return (
-    <div>
+    <div className="review">
       <div>
-        <span>{userName}</span>
+        <h4> Show/Event: {eventName}</h4>
+        <p>
+          <span>Rating: {rating}</span>
+        </p>
+        <div>
+          <span>
+            <span className="highlight">{userName}</span> says...
+          </span>
+        </div>
+        <p className="description-text">{text}</p>
       </div>
       <div>
-        <span>Rating: {rating}</span>
+        {editButton}
+        {editReviewForm}
+        <button type="button" className="button" onClick={handleDeleteClick}>
+          Delete Review
+        </button>
       </div>
-      <div>
-        <span> Show/Event: {eventName}</span>
-      </div>
-      <p>
-        <span>{text}</span>
-      </p>
-      {editButton}
-      {editReviewForm}
-      <button type="button" onClick={handleDeleteClick}>
-        Delete Review
-      </button>
     </div>
   );
 };
