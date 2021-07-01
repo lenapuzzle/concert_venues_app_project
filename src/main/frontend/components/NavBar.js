@@ -15,7 +15,7 @@ const NavBar = (props) => {
         <div className="left">
           <Link to="/">
             <h1 className="coName">'Live' From Here</h1>
-          </Link>|
+          </Link>
         </div>
         
         <div className="right">

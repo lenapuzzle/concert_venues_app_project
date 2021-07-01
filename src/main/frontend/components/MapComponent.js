@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 
 const containerStyle = {
-  width: '400px',
-  height: '400px'
+ height: '100%'
 };
 
 const  MapComponent = props => {
@@ -52,7 +51,7 @@ const  MapComponent = props => {
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={{ lat: latitude, lng: longitude }}
-        zoom={18}
+        zoom={16}
       >
         { /* Child components, such as markers, info windows, etc. */ }
         <Marker 
@@ -60,14 +59,6 @@ const  MapComponent = props => {
           position={{ lat: latitude, lng: longitude }}
           label={name}
         />
-        <InfoWindow
-          position={{ lat: latitude, lng: longitude }}
-          >
-          <div className='info-box'>
-            <h3>{name}</h3>
-            <small>{address}</small>
-          </div>
-        </InfoWindow>
         <></>
       </GoogleMap>
     </LoadScript>

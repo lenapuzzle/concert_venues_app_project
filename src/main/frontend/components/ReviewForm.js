@@ -131,7 +131,7 @@ const ReviewForm = (props) => {
           />
         </div>
 
-        <input className="button" type="submit" value="Submit Your Review" />
+        <input className="button" type="submit" value="Submit" />
       </form>
     </div>
   );

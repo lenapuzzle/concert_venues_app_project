@@ -106,25 +106,29 @@ const VenueShow = (props) => {
       <div>
         <img src={venue.imgUrl} />
       </div>
-      <div>
+      <div className="soft-wrap">
         <p>{venue.description} <span className="deemphasize"> (Capacity: {venue.capacity})</span></p>
       </div>
-      <h3>Contact Info</h3>
-      <div>
-        <span>{venue.address}, </span>
-        <span>{venue.city}, </span>
-        <span>{venue.state} </span>
-        <span>{venue.zipCode}</span>
-      </div>
-      <div>
-        <span>{venue.phoneNumber}</span>
+      <div className="contact-container">
+        <div className="contact">
+          <h3>Contact Info</h3>
+          <div>
+            <span>{venue.address}, </span>
+            <span>{venue.city}, </span>
+            <span>{venue.state} </span>
+            <span>{venue.zipCode}</span>
+          </div>
+          <div>
+            <span>{venue.phoneNumber}</span>
+          </div>
+        </div>
+        <map className="contact">
+          {googleMap}
+        </map>
       </div>
       {reviewButton}
       {reviewSubmittedResponse}
       {reviewForm}
-      <map>
-        {googleMap}
-      </map>
     </div>
   );
 };
