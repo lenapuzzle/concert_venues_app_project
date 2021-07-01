@@ -150,6 +150,10 @@ div.show img {
   padding: 20px 5%;
 }
 
+.star {
+  color: #BF925A;
+}
+
 .input-box {
   min-width: 70%;
 }
