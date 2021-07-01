@@ -23,10 +23,10 @@ body {
   margin-bottom: 40px;
 }
 
-img {
+.venue-image {
   max-width: 200px;
   max-height: 200px;
-}
+} 
 
 .map-container {
   height: 100%;
@@ -36,4 +36,13 @@ img {
 
 #map {
   height: 100%;
+}
+
+.info-box {
+  background-color: #FFF;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: none;
+  max-width: 200px;
+  max-height: 200px;
 }

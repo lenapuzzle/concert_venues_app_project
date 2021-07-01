@@ -9,7 +9,9 @@ const VenueShow = (props) => {
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [isReviewSubmitted, setIsReviewSubmitted] = useState(false);
   const [successfulEdit, setSuccessfulEdit] = useState(false);
+  const [mapReady, setMapReady] = useState(false);
   const venueId = props.match.params.id;
+  
 
   const fetchVenue = async () => {
     try {
@@ -21,6 +23,7 @@ const VenueShow = (props) => {
       }
       const venueData = await response.json();
       setVenue(venueData.venue);
+      setMapReady(true);
     } catch (error) {
       console.error(`There was an error in fetch: ${error}`);
     }
@@ -61,6 +64,7 @@ const VenueShow = (props) => {
     setShowReviewForm(false);
   };
 
+  let googleMap;
   let reviewSubmittedResponse;
   let reviewForm;
   let reviewButton;
@@ -82,6 +86,16 @@ const VenueShow = (props) => {
         <div>{reviews}</div>
       </div>
     );
+  }
+
+  if(mapReady) {
+    googleMap = <MapComponent 
+      address={venue.address}
+      city={venue.city}
+      state={venue.state}
+      zipCode={venue.zipCode}
+      name={venue.name} 
+      />
   }
 
   return (
@@ -112,7 +126,9 @@ const VenueShow = (props) => {
       {reviewButton}
       {reviewSubmittedResponse}
       {reviewForm}
-      <MapComponent />
+      <map>
+        {googleMap}
+      </map>
     </div>
   );
 };
