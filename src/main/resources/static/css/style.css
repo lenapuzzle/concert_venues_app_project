@@ -90,7 +90,7 @@ a {
   border-radius: 20px;
 }
 
-img {
+.venue-image {
   max-width: 200px;
   max-height: 200px;
   margin-bottom: 40px;
@@ -160,4 +160,23 @@ div.show img {
   width: 30%;
   display: flex;
   justify-content: flex-end;
+} 
+
+.map-container {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#map {
+  height: 100%;
+}
+
+.info-box {
+  background-color: #FFF;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: none;
+  max-width: 200px;
+  max-height: 200px;
 }

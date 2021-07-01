@@ -55,7 +55,9 @@ const VenueTile = (props) => {
       </Link>
 
       <Link to={`/concert-venues/${id}`}>
-        <img src={imgUrl} />
+        <img 
+          src={imgUrl}
+          className="venue-image" />
       </Link>
 
       <p>{description}</p>
