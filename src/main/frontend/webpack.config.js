@@ -2,6 +2,7 @@ let WriteFilePlugin = require("write-file-webpack-plugin");
 
 const webpack = require("webpack");
 const path = require("path");
+const Dotenv = require("dotenv-webpack")
 
 module.exports = {
   entry: {
@@ -24,6 +25,8 @@ module.exports = {
       },
     ],
   },
-  plugins: [new WriteFilePlugin()],
+  plugins: [new WriteFilePlugin(), new Dotenv({
+    path: './.env'
+  })],
   devtool: "eval-source-map",
 };

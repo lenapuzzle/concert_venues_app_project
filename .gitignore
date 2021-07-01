@@ -4,6 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 **/node_modules
+src/main/frontend/.env
 *.lesson.json
 .etignore
 .DS_Store
