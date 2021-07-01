@@ -26,7 +26,7 @@ module.exports = {
     ],
   },
   plugins: [new WriteFilePlugin(), new Dotenv({
-    path: './.env'
+    systemvars: true
   })],
   devtool: "eval-source-map",
 };
