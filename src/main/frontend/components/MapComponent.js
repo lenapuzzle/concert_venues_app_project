@@ -17,7 +17,7 @@ const  MapComponent = props => {
   let mqApiKey = process.env.MAP_Q_API_KEY;
 
   const fetchCoordinates = async () => {
-    let location = `${address},${city},${state}${zipCode}`
+    let location = `${address}, ${city}, ${state} ${zipCode}`
     
     try {
       const response = await fetch(`https://www.mapquestapi.com/geocoding/v1/address?key=${mqApiKey}&location=${location}`, {
@@ -32,8 +32,8 @@ const  MapComponent = props => {
         throw error;
       }
       const locationData = await response.json();
-      setLatitude(locationData.results[0].locations[0].displayLatLng.lat)
-      setLongitude(locationData.results[0].locations[0].displayLatLng.lng)
+      setLatitude(locationData.results[0].locations[0].latLng.lat)
+      setLongitude(locationData.results[0].locations[0].latLng.lng)
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
     }
