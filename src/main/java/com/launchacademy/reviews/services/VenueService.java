@@ -18,7 +18,7 @@ public class VenueService {
   }
 
   public List<Venue> findAllVenues(){
-    return (List<Venue>) venueRepository.findAll();
+    return (List<Venue>) venueRepository.findAllByOrderByNameAsc();
   }
 
   public Venue save(Venue venue) {
@@ -40,4 +40,5 @@ public class VenueService {
   public void delete(Venue venue) {
     venueRepository.delete(venue);
   }
+
 }
