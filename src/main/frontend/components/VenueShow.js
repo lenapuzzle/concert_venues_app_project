@@ -3,13 +3,14 @@ import VenueShowReviews from "./VenueShowReviews.js";
 import ReviewForm from "./ReviewForm.js";
 import ReviewSubmittedTile from "./ReviewSubmittedTile.js";
 import MapComponent from "./MapComponent.js";
+import Star from "./Star";
 
 const VenueShow = (props) => {
   const [venue, setVenue] = useState({ reviews: [] });
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [isReviewSubmitted, setIsReviewSubmitted] = useState(false);
   const [successfulEdit, setSuccessfulEdit] = useState(false);
-  const [mapReady, setMapReady] = useState(false);
+  const [loadReady, setLoadReady] = useState(false);
   const venueId = props.match.params.id;
   
 
@@ -23,7 +24,7 @@ const VenueShow = (props) => {
       }
       const venueData = await response.json();
       setVenue(venueData.venue);
-      setMapReady(true);
+      setLoadReady(true);
     } catch (error) {
       console.error(`There was an error in fetch: ${error}`);
     }
@@ -64,10 +65,20 @@ const VenueShow = (props) => {
     setShowReviewForm(false);
   };
 
+  const determineAverage = () => {
+    let total = 0;
+    venue.reviews.forEach((review) => {
+     total += review.rating
+    })
+    return Math.floor(total/venue.reviews.length)
+  }
+
+  let stars = [];
   let googleMap;
   let reviewSubmittedResponse;
   let reviewForm;
   let reviewButton;
+  
   // Determines display of reviews or form or submitted page
   if (showReviewForm) {
     reviewForm = <ReviewForm id={venueId} reviewSubmitted={reviewSubmitted} />;
@@ -88,7 +99,7 @@ const VenueShow = (props) => {
     );
   }
 
-  if(mapReady) {
+  if(loadReady) {
     googleMap = <MapComponent 
       address={venue.address}
       city={venue.city}
@@ -96,6 +107,10 @@ const VenueShow = (props) => {
       zipCode={venue.zipCode}
       name={venue.name} 
       />
+    let numberOfStars = determineAverage()
+    for(let i = 0; i < numberOfStars; i++) {
+      stars.push(<Star key={i}/>)
+    }
   }
 
   return (
@@ -106,6 +121,7 @@ const VenueShow = (props) => {
       <div>
         <img src={venue.imgUrl} />
       </div>
+      <div>{stars}</div>
       <div className="soft-wrap">
         <p>{venue.description} <span className="deemphasize"> (Capacity: {venue.capacity})</span></p>
       </div>
