@@ -20,7 +20,7 @@ const  MapComponent = props => {
     let location = `${address},${city},${state}${zipCode}`
     
     try {
-      const response = await fetch(`http://www.mapquestapi.com/geocoding/v1/address?key=${mqApiKey}&location=${location}`, {
+      const response = await fetch(`https://www.mapquestapi.com/geocoding/v1/address?key=${mqApiKey}&location=${location}`, {
         method: "GET",
         headers: new Headers({
           "Content-Type": "application/json"
