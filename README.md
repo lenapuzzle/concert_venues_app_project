@@ -9,6 +9,8 @@ We are building this application with scalability in mind and plan to implement 
 #Technology
 Java, JavaScript, Hibernate, Spring, React, Maven, PostgreSQL, CSS, HTML.
 
+You can find a working example of this project here: http://venue-reviews.herokuapp.com/concert-venues
+
 #Authors
 *Jessica Mach
 *Davon Belvin
