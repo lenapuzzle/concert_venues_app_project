@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router";
 import _ from "lodash";
 import ErrorList from "./ErrorList";
-import VenueField from "./VenueField";
 
 const EditReview = (props) => {
   const [formPayload, setFormPayload] = useState({
@@ -10,7 +9,7 @@ const EditReview = (props) => {
     userName: "",
     text: "",
     rating: "",
-    venueId: "",
+    venueId: props.venueId,
   });
 
   const [errors, setErrors] = useState({});
@@ -101,63 +100,48 @@ const EditReview = (props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ErrorList errors={{ ...errors, ...props.errors }} />
-      <div>
-        <label htmlFor="eventName"> EventName:</label>
-        <input
-          name="eventName"
-          id="eventName"
-          type="text"
-          value={formPayload.eventName}
-          onChange={handleInputChange}
-        />
-      </div>
+    <div>
+      <p className="highlight">Edit {formPayload.userName}'s Review</p>
+      <form onSubmit={handleSubmit}>
+        <ErrorList errors={{ ...errors, ...props.errors }} />
+        <div>
+          <label htmlFor="eventName"> EventName:</label>
+          <input
+            name="eventName"
+            id="eventName"
+            type="text"
+            value={formPayload.eventName}
+            onChange={handleInputChange}
+          />
+        </div>
 
-      <div>
-        <label htmlFor="userName">User Name:</label>
-        <input
-          name="userName"
-          id="userName"
-          type="text"
-          value={formPayload.userName}
-          onChange={handleInputChange}
-        />
-      </div>
+        <div>
+          <label htmlFor="text">Review:</label>
+          <input
+            name="text"
+            id="text"
+            type="text"
+            value={formPayload.text}
+            onChange={handleInputChange}
+          />
+        </div>
 
-      <div>
-        <label htmlFor="text">Review:</label>
-        <input
-          name="text"
-          id="text"
-          type="text"
-          value={formPayload.text}
-          onChange={handleInputChange}
-        />
-      </div>
+        <div>
+          <label htmlFor="rating">Rating:</label>
+          <input
+            name="rating"
+            id="rating"
+            type="number"
+            min="1"
+            max="10"
+            value={formPayload.rating}
+            onChange={handleInputChange}
+          />
+        </div>
 
-      <div>
-        <label htmlFor="rating">Rating:</label>
-        <input
-          name="rating"
-          id="rating"
-          type="number"
-          min="1"
-          max="10"
-          value={formPayload.rating}
-          onChange={handleInputChange}
-        />
-      </div>
-
-      <div>
-        <VenueField
-          handleInputChange={handleInputChange}
-          venueId={formPayload.venueId}
-        />
-      </div>
-
-      <input className="button" type="submit" value="Submit Edit" />
-    </form>
+        <input className="button" type="submit" value="Submit Edit" />
+      </form>
+    </div>
   );
 };
 
